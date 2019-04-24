@@ -81,6 +81,45 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Record Mode:"
+            android:id="@+id/recordModeLabel"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/radioRecordMode"
+            android:layout_margin="5dp" />
+
+        <RadioGroup
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/radioRecordMode"
+            android:orientation='horizontal'>
+
+            <RadioButton
+                android:id="@+id/radioModeRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Record"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioModeAppend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Append" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"

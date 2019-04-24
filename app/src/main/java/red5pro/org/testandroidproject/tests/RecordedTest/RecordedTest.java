@@ -70,7 +70,10 @@ public class RecordedTest extends PublishTest {
 
         preview.showDebugView(TestContent.GetPropertyBool("debug_view"));
 
-        publish.publish(TestContent.GetPropertyString("stream1"), R5Stream.RecordType.Record);
+        String mode = TestContent.GetPropertyString("record_mode");
+        R5Stream.RecordType recordType = R5Stream.RecordType.valueOf(mode);
+
+        publish.publish(TestContent.GetPropertyString("stream1"), recordType);
 
         if(TestContent.GetPropertyBool("video_on"))
             cam.startPreview();

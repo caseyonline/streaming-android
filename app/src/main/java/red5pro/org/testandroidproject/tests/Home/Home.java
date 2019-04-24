@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+import com.red5pro.streaming.R5Stream;
 
 import red5pro.org.testandroidproject.R;
 import red5pro.org.testandroidproject.TestDetailFragment;
@@ -29,6 +33,10 @@ public class Home extends TestDetailFragment {
     CheckBox videoCheck;
     CheckBox audioCheck;
 
+    RadioButton recordMode;
+    RadioButton appendMode;
+    RadioGroup radioRecordMode;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_screen, container, false);
@@ -37,6 +45,10 @@ public class Home extends TestDetailFragment {
         hostText = (EditText)rootView.findViewById(R.id.hostText);
         stream1Text = (EditText)rootView.findViewById(R.id.stream1Text);
         stream2Text = (EditText)rootView.findViewById(R.id.stream2Text);
+
+        radioRecordMode = (RadioGroup) rootView.findViewById(R.id.radioRecordMode);
+        recordMode = (RadioButton)rootView.findViewById(R.id.radioModeRecord);
+        appendMode = (RadioButton)rootView.findViewById(R.id.radioModeAppend);
 
         licenseText.setText(TestContent.GetPropertyString("license_key"));
         hostText.setText(TestContent.GetPropertyString("host"));
@@ -131,6 +143,20 @@ public class Home extends TestDetailFragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) TestContent.SetPropertyString("audio_on", "true");
                 else TestContent.SetPropertyString("audio_on", "false");
+            }
+        });
+
+        radioRecordMode.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if(checkedId == recordMode.getId())
+                {
+                    TestContent.SetPropertyString( "record_mode", String.valueOf(R5Stream.RecordType.Record));
+                }
+                else if(checkedId == appendMode.getId())
+                {
+                    TestContent.SetPropertyString( "record_mode", String.valueOf(R5Stream.RecordType.Append));
+                }
             }
         });
 
